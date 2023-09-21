@@ -15,7 +15,7 @@ class Account {
     }
 
     sendingMoney(amount) {
-        if(this.#amount > amount){
+         if(this.#amount > amount){
             this.#amount = this.#amount - amount;
             console.log(`Sizning hisobingizdan ${amount}$ yechildi, Qoldiq: ${this.#amount}$`)
         }else{
