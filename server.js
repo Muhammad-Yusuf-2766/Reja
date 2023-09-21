@@ -73,21 +73,36 @@ const inquirer = require("inquirer");
   myAccount.sendingMoney(450);
 
 
+// ============================================= EXPRESS.JS framework. and Web server =================================//
+console.log("======================= EXPRESS.JS AND WEB SERVER ========================");
 
-   
+console.log("Web serverni boshlaymiz.")
+const  express = require('express');
+const app = express();
+const http = require('http');
 
-console.log("=================== C-TASK =====================");
+// 1.Kirish Kodlar.
+app.use(express.static('public')); // bu kod orqali biz shu folderga kiritlgan ma'lumotlarnigina user browersda ishlatishi mumkin. publicda bo'lmagan maumotlarni download qilib yoki copy qila olmaydi.
+app.use(express.json()); // bu kod orqali kelayotgan ma'lumotlarni json malumot turiga aylantiradi.
+app.use(express.urlencoded({extended: true}));
 
-// C-Task. 2 ta stringni tekshirish. 
-function checkString(str1, str2) {
-  str1 = str1.replace('').toLowerCase();
-  str2 = str2.replace('').toLowerCase();
+// 2. Session kodlar
 
-  const sortedStr1 = str1.split('').sort().join('');
-  const sortedStr2 = str2.split('').sort().join('');
+// 3. Views kodlar
+app.set("Views", "Views");
+app.set("View engine", "ejs");
 
-  return sortedStr1 === sortedStr2;
-}
+// 4. Routing kodlar
+app.get("/hello", function(req, res){
+  res.end(`<h1>HELLO WORLD !</h1>`);
+})
 
-const result = checkString("internation", "ntieraontin");
-console.log("stringlar qiymati:", result); 
+app.get("/gift", function(req, res){
+  res.end(`<h1>Sovg'alar barchasi sizniki !</h1>`);
+})
+
+const server = http.createServer(app);
+let PORT = 8080;
+server.listen(PORT, function () {
+  console.log(`The Sever is running  successfully on port ${PORT}`);
+})
