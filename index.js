@@ -19,7 +19,7 @@ const inquirer = require("inquirer");
 
   // Validator modulni ko'ramiz: bu turli malumot turlarini tekshiradi. Email. number.string. IP address
   const validator = require("validator");
-  const email = validator.isEmail("strangerbellimo@gmail.com");
+  const email = validator.isEmail("strangerbellimogmail.com");
   console.log("Email qiymati: ", email);
 
   const ip = validator.isIP('14.42.86.31');
@@ -40,12 +40,43 @@ const inquirer = require("inquirer");
   const log = console.log;
   log(chalk.bgGreen.white("Your password:") + chalk.blue("",random) + chalk.redBright(" !"));
   
-  console.log("=================== C-TASK =====================");
+  console.log("================= File Modullar ================");
+
+
+  //================== File Modullar =====================//
+  // file modullar bu biz yaratgan fayl modullar hisoblanadi. va fayllar bilan ishlanadi.M:
+  const   calculate = require ('./hisob.js');
+
+  const natija = calculate.plus(200, 300);
+  console.log("Sonlar yig'indisi: ", natija);
+  console.log("=========================");
+
+  const natija2 = calculate.minus(500, 270);
+  console.log("Sonlar ayirmasi:", natija2);
+  console.log("==========================");
+
+  const natija3 = calculate.bolish(500, 10);
+  console.log("Sonlan bo'linmasi: ", natija3);
+  console.log("===========================");
+
+  const natija4 = calculate.kopaytirish(500, 2);
+  console.log("Sonlar ko'paytmasi: ", natija4);
+
+// endi account.js file dagi dasturni chaqirib ishga tushiramiz.
+  const Account = require('./account.js');
+  Account.tellMeTime();
+  Account.tellMeAboutClass();
+
+  const myAccount = new Account("Yusuf", 10000, 90343243872);
+  myAccount.showDetails();
+  myAccount.deposit(200);
+  myAccount.sendingMoney(450);
 
 
 
+   
 
-
+console.log("=================== C-TASK =====================");
 
 // C-Task. 2 ta stringni tekshirish. 
 function checkString(str1, str2) {
