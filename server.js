@@ -89,17 +89,18 @@ app.use(express.urlencoded({extended: true}));
 // 2. Session kodlar
 
 // 3. Views kodlar
-app.set("Views", "Views");
-app.set("View engine", "ejs");
+app.set("views", "views");
+app.set("view engine", "ejs");
 
 // 4. Routing kodlar
-app.get("/hello", function(req, res){
-  res.end(`<h1>HELLO WORLD !</h1>`);
-})
+app.post('/create-item', (req, res) =>  {
+  console.log(req.body)
+  res.json({test: "Success"});
+});
 
-app.get("/gift", function(req, res){
-  res.end(`<h1>Sovg'alar barchasi sizniki !</h1>`);
-})
+app.get('/', function (req, res) {
+  res.render("harid");
+});
 
 const server = http.createServer(app);
 let PORT = 8080;
