@@ -1,14 +1,31 @@
-// ============================================= 17-DARS. EXPRESS.JS framework. and Web server =================================//
+// ============================================= 18-DARS. EJS FRAMEWORK DA PORTFOLIO QURAMIZ ===================================//
 
-console.log("======================= EXPRESS.JS AND WEB SERVER ========================");
 
-console.log("Web serverni boshlaymiz.")
+
+
+
+
+// // ============================================= 17-DARS. EXPRESS.JS framework. and Web server =================================//
+
+// console.log("======================= EXPRESS.JS AND WEB SERVER ========================");
+
+// console.log("Web serverni boshlaymiz.")
 const  express = require('express');
 const app = express();
 const http = require('http');
+const fs = require("fs");
+
+let user;
+fs.readFile("database/user.json", "utf-8", (err, data) => {
+  if(err) {
+    console.log("ERROR", err);
+  }else{
+    user = JSON.parse(data);
+  }
+})
 
 // 1.Kirish Kodlar.
-app.use(express.static('public')); // bu kod orqali biz shu folderga kiritlgan ma'lumotlarnigina user browersda ishlatishi mumkin. publicda bo'lmagan maumotlarni download qilib yoki copy qila olmaydi.
+app.use(express.static(__dirname + '/public')); // bu kod orqali biz shu folderga kiritlgan ma'lumotlarnigina user browersda ishlatishi mumkin. publicda bo'lmagan maumotlarni download qilib yoki copy qila olmaydi.
 app.use(express.json()); // bu kod orqali kelayotgan ma'lumotlarni json malumot turiga aylantiradi.
 app.use(express.urlencoded({extended: true}));
 
@@ -23,6 +40,10 @@ app.post('/create-item', (req, res) =>  {
   console.log(req.body)
   res.json({test: "Success"});
 });
+
+app.get('/author',(req, res) => {
+  res.render("author",)  
+})
 
 app.get('/', function (req, res) {
   res.render("harid");
