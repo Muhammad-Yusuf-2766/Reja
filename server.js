@@ -25,7 +25,8 @@ fs.readFile("database/user.json", "utf-8", (err, data) => {
 })
 
 // 1.Kirish Kodlar.
-app.use(express.static(__dirname + '/public')); // bu kod orqali biz shu folderga kiritlgan ma'lumotlarnigina user browersda ishlatishi mumkin. publicda bo'lmagan maumotlarni download qilib yoki copy qila olmaydi.
+app.use(express.static('public'));
+ // bu kod orqali biz shu folderga kiritlgan ma'lumotlarnigina user browersda ishlatishi mumkin. publicda bo'lmagan maumotlarni download qilib yoki copy qila olmaydi.
 app.use(express.json()); // bu kod orqali kelayotgan ma'lumotlarni json malumot turiga aylantiradi.
 app.use(express.urlencoded({extended: true}));
 
@@ -42,7 +43,7 @@ app.post('/create-item', (req, res) =>  {
 });
 
 app.get('/author',(req, res) => {
-  res.render("author",)  
+  res.render("author",{user: user})  
 })
 
 app.get('/', function (req, res) {
@@ -50,7 +51,7 @@ app.get('/', function (req, res) {
 });
 
 const server = http.createServer(app);
-let PORT = 8080;
+let PORT = 3000;
 server.listen(PORT, function () {
   console.log(`The Sever is running  successfully on port ${PORT}`);
 })
