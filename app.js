@@ -1,19 +1,15 @@
-// ============================================= 18-DARS. EJS FRAMEWORK DA PORTFOLIO QURAMIZ ===================================//
-
-
-
-
-
-
-// // ============================================= 17-DARS. EXPRESS.JS framework. and Web server =================================//
+// // ============================================= 22-DARS. MongoDB databasega connection quramiz =================================//
 
 // console.log("======================= EXPRESS.JS AND WEB SERVER ========================");
 
-// console.log("Web serverni boshlaymiz.")
+console.log("Web serverni boshlaymiz.")
 const  express = require('express');
 const app = express();
 const http = require('http');
 const fs = require("fs");
+
+// Mongo_DB chaqirish;
+// const db = require("./server").db();  
 
 let user;
 fs.readFile("database/user.json", "utf-8", (err, data) => {
