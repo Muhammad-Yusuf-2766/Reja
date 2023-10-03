@@ -5,11 +5,11 @@
 console.log("Web serverni boshlaymiz.")
 const  express = require('express');
 const app = express();
-const http = require('http');
 const fs = require("fs");
 
 // Mongo_DB chaqirish;
-// const db = require("./server").db();  
+const db = require("./server").db();
+  
 
 let user;
 fs.readFile("database/user.json", "utf-8", (err, data) => {
@@ -34,8 +34,17 @@ app.set("view engine", "ejs");
 
 // 4. Routing kodlar
 app.post('/create-item', (req, res) =>  {
+  console.log("user enterd / create-item");
   console.log(req.body)
-  res.json({test: "Success"});
+  const new_reja = req.body.reja;
+  db.collection("plans").insertOne({reja: new_reja}, (err, data) => {
+    if(err){
+      console.log(err);
+      res.end("Something went wrong");
+    } else {
+      res.end("Item Inserted successfully");
+    }
+  })
 });
 
 app.get('/author',(req, res) => {
@@ -43,10 +52,20 @@ app.get('/author',(req, res) => {
 })
 
 app.get('/', function (req, res) {
-  res.render("reja");
+  console.log("user enterd / main_page");
+  db.collection("plans").find().toArray((err, data) => {
+    if(err) {
+      console.log(err);
+      res.end("Something went wrong");
+    } else {
+      console.log(data);
+      res.render("reja", { items: data});
+    }
+  }) 
 });
 
 module.exports = app;
+
 
 
 

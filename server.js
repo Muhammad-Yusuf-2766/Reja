@@ -6,13 +6,13 @@ const connectionString = "mongodb+srv://Muhammad-Yusuf-2766:Mamadaliev2766@clust
 
 mongodb.connect(connectionString, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 }, (err, client) => {
   if (err) {
     console.log("Error on connection MongoDB");
   } else {
     console.log("MongoDB connected successfully");
-    module.exports.client;
+    module.exports = client;
 
     const app = require("./app");
     const server = http.createServer(app);
