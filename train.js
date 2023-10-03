@@ -1,11 +1,24 @@
-// ========================= E- Task:stringni  reverse qaytarish ===============================//
-function teskari(string) {
-  const yangiStr = string.split('').reverse().join('');
-  return yangiStr;
+// =============================== F-TASK. FIND DOUBLERS ============================================//
+function hasDoublers(str) {
+  const charArray = str.split('');
+  if (charArray.find((char, index) => charArray.indexOf(char) !== index)) {
+      return console.log("Stringda double harflar bor:",true); 
+  } else {
+      return console.log("Stringda double harflar yo'q",false); 
+  }
 }
-const inputStr = "Dunyo boylab";
-const yangilanganStr = teskari(inputStr);
-  console.log("Kiritilgan matn: ",inputStr, "\nMatnning teskarisi:", yangilanganStr);
+const result = hasDoublers("hello");
+
+
+
+// // ========================= E- Task:stringni  reverse qaytarish ===============================//
+// function teskari(string) {
+//   const yangiStr = string.split('').reverse().join('');
+//   return yangiStr;
+// }
+// const inputStr = "Dunyo boylab";
+// const yangilanganStr = teskari(inputStr);
+//   console.log("Kiritilgan matn: ",inputStr, "\nMatnning teskarisi:", yangilanganStr);
 
 // =============================================== Callback and asynchronous functions ========================================//
 // console.log("Jack Ma maslahatlari");
