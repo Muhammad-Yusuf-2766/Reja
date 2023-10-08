@@ -64,12 +64,12 @@ app.post("/edit-item", (req, res) => {
 
 // delete-all API post qismi
 app.post("/delete-all", (req, res) => {
-  if (req.body.delete_all) {
-      db.collection("plans").deleteMany(function () {
-          res.json({ state: "Hamma rejalar o'chirildi"});
-      });
+  if(req.body.delete_all) {
+    db.collection("plans").deleteMany(function() {
+      res.json({state: "Deleted all"})
+    })
   }
-});
+})
 
 app.get('/author',(req, res) => {
   res.render("author",{user: user})  

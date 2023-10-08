@@ -39,7 +39,7 @@ document.getElementById("create-form").addEventListener("submit", function (e) {
         document
           .getElementById("list-item")
           .insertAdjacentHTML("beforeend", itemTemplate(response.data))
-        createFielad.value = "Search";
+        createFielad.value = "";
         createFielad.focus();
       })
       .catch((err) => {
