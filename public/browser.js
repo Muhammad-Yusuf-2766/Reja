@@ -1,4 +1,6 @@
-console.log("Frontend JS ishga tushdi :)");
+
+
+console.log("Frontend JS ishga tushdi :)"); // Tanishtiruv uchun.
 
 function itemTemplate(item) {
     return `<li
@@ -37,10 +39,49 @@ document.getElementById("create-form").addEventListener("submit", function (e) {
         document
           .getElementById("list-item")
           .insertAdjacentHTML("beforeend", itemTemplate(response.data))
-        createFielad.value = "";
+        createFielad.value = "Search";
         createFielad.focus();
       })
       .catch((err) => {
         console.log("Iltimos qaytadan harakat qiling !")
       })     
+});
+
+document.addEventListener("click", function (e) {
+  console.log(e);
+  if(e.target.classList.contains("delete-me")){
+    if(confirm("Aniq o'chirmoqchimisiz ?")) {
+      axios
+        .post("/delete-item", { id: e.target.getAttribute("data-id") })
+        .then((response) => {
+          console.log(response.data);
+          e.target.parentElement.parentElement.remove();
+        })
+        .catch((err) => {
+          console.log(err, "O'chirishda xatolik bor")
+        });
+    }
+  }
+  
+  if(e.target.classList.contains("edit-me")){
+    let userInput = prompt("Editing value", e.target.parentElement.parentElement.querySelector(".item-text").innerHTML);
+    if(userInput) {
+      axios.post("/edit-item",{
+         id: e.target.getAttribute("data-id"),
+          new_input: userInput,
+    }).then(response => {
+        console.log(response.data);
+        e.target.parentElement.parentElement.querySelector(".item-text").innerHTML = userInput
+    }).catch(err => {
+        console.log("Xatolik bor: Iltimos qayta urinish");
+    })
+    }
+  };
+});
+
+document.getElementById("clean-all").addEventListener("click", function() {
+  axios.post("/delete-all", { delete_all: true }).then((respose) => {
+    alert(respose.data.state);
+    document.location.reload();
+  })
 })
